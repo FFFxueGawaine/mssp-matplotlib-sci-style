@@ -48,4 +48,6 @@ Use this guide when the user's code or image is not identical to the demos. The 
 - Call `apply_sci_style(base_size=10)` for larger double-column or presentation-like figures.
 - Add `panel_label(ax, "(a)")` for manuscript panels.
 - Use units with spaces: `time (s)`, `fre. (Hz)`, `dis. (mm)`.
+- Prefer lowercase compact quantity labels such as `vel.`, `acc.`, `amp.`, `mag.`, `err.`, `rmse`, and `loss`.
+- Keep official unit capitalization: `Hz`, `N`, `MPa`, and `dB` should not be forced to lowercase.
 - Verify by opening the generated PNG, not only by trusting the terminal.

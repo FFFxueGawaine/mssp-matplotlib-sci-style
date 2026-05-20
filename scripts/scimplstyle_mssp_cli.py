@@ -18,6 +18,7 @@ Style name: MSSP Compact Dynamics.
 - Export: PNG bitmap at 600 dpi by default; generate PDF/SVG only when explicitly requested.
 - Width: single column 85 mm; double column 178 mm.
 - Units: write `time (s)`, `fre. (Hz)`, `dis. (mm)`, `mag. (dB)`.
+- Labels: prefer lowercase compact quantities such as `vel.`, `acc.`, `amp.`, `err.`, `rmse`; keep official unit capitalization such as `Hz`, `N`, `MPa`, `dB`.
 - Panel labels: bold `(a)`, `(b)`, `(c)` above each axes.
 - Legends: prefer `safe_legend()`; place dense legends outside the axes or in a genuinely empty corner.
 - Grid: keep it light, behind data, and disable the axis direction that does not help reading.

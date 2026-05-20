@@ -43,6 +43,8 @@ For numbered manuscript figures, use consistent capitalization such as `Fig_01.p
 
 ## Common Corrections
 
+- Prefer lowercase compact quantity labels: `dis.`, `vel.`, `acc.`, `amp.`, `mag.`, `err.`, `loss`.
+- Keep official unit capitalization: use `fre. (Hz)`, `force (N)`, `stress (MPa)`, and `mag. (dB)` rather than lowercasing the unit symbols.
 - Change `time(s)` to `time (s)`.
 - Change `fre.(Hz)` to `fre. (Hz)` or `frequency (Hz)`.
 - Change `dis.(mm)` to `dis. (mm)`.
@@ -52,3 +54,14 @@ For numbered manuscript figures, use consistent capitalization such as `Fig_01.p
 - Keep layouts compact but leave enough save margin for x/y labels; prefer `constrained_layout=True` plus `pad_inches=0.04`.
 - Use consistent SNR colors if comparing `40 dB`, `30 dB`, and `20 dB`.
 - Avoid large annotations on dense scatter or heatmap figures.
+
+## Common Axis Labels
+
+| Group | Preferred compact labels |
+|---|---|
+| Time and frequency | `time (s)`, `period (s)`, `fre. (Hz)`, `ang. fre. (rad/s)`, `phase (deg)` |
+| Response | `dis. (mm)`, `vel. (mm/s)`, `acc. (m/s^2)`, `amp. (mm)`, `peak dis. (mm)`, `rms acc. (m/s^2)` |
+| FRF and spectra | `mag. (dB)`, `phase (deg)`, `psd (dB/Hz)`, `energy (-)` |
+| Mechanical properties | `force (N)`, `moment (N m)`, `torque (N m)`, `stiff. (N/mm)`, `damp. (N s/m)`, `mass (kg)` |
+| Material or field quantities | `strain (-)`, `stress (MPa)`, `pressure (kPa)`, `temp. (K)` |
+| Machine-learning metrics | `acc. (%)`, `err. (%)`, `rmse (mm)`, `mae (mm)`, `loss (-)`, `f1 score (-)`, `auc (-)`, `train. time (s)`, `infer. time (ms)` |

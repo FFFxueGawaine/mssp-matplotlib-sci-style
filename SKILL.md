@@ -62,10 +62,22 @@ For each exported figure, collect:
 - Use single-column width around `85 mm`; double-column width around `170-180 mm`.
 - Use bold panel labels `(a)`, `(b)`, `(c)` consistently; default to `base_size + 4 pt`, e.g. `14 pt` when base text is `10 pt`.
 - Write units with a space before parentheses: `time (s)`, `fre. (Hz)`, `dis. (mm)`, `mag. (dB)`.
+- Prefer lowercase compact quantity labels such as `dis.`, `vel.`, `acc.`, `amp.`, `mag.`, `err.`, and `loss`; keep official unit capitalization such as `Hz`, `N`, `MPa`, and `dB`.
 - Keep labels, legends, line widths, markers, grid visibility, and colorbar placement consistent across the same figure family.
 - Keep legends and grid lines secondary to data: use `safe_legend()` or an empty corner for legends, place dense legends outside the axes, and keep grid lines light, behind plotted data, and never visually dominant.
 - Keep layouts compact but never crop axis labels; use `constrained_layout=True`, small `labelpad`, and save with a safety `pad_inches` around `0.04`.
 - Avoid using JPEG as the only master format for generated plots; JPEG is acceptable only as a preview copy.
+
+## Axis Label Conventions
+
+Use these common labels as the default compact style:
+
+- Time and frequency: `time (s)`, `period (s)`, `fre. (Hz)`, `ang. fre. (rad/s)`, `phase (deg)`.
+- Response: `dis. (mm)`, `vel. (mm/s)`, `acc. (m/s^2)`, `amp. (mm)`, `peak dis. (mm)`, `rms acc. (m/s^2)`.
+- FRF and spectra: `mag. (dB)`, `phase (deg)`, `psd (dB/Hz)`, `energy (-)`.
+- Mechanical properties: `force (N)`, `moment (N m)`, `torque (N m)`, `stiff. (N/mm)`, `damp. (N s/m)`, `mass (kg)`.
+- Material or field quantities: `strain (-)`, `stress (MPa)`, `pressure (kPa)`, `temp. (K)`.
+- Machine-learning metrics: `acc. (%)`, `err. (%)`, `rmse (mm)`, `mae (mm)`, `loss (-)`, `f1 score (-)`, `auc (-)`, `train. time (s)`, `infer. time (ms)`.
 
 ## Style Levels
 

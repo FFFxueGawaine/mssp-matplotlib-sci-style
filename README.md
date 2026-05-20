@@ -62,6 +62,21 @@ The default visual style is still named `MSSP Compact Dynamics`, and the Python 
 - ML result plots such as confusion matrix, ROC/PR, radar chart, feature importance, residual KDE, heatmap / 机器学习常用图，如混淆矩阵、ROC/PR、雷达图、特征重要性、残差 KDE、热力图
 - Compact SCI layout rules: Times New Roman, 600 dpi PNG, careful legends, light grids, unclipped labels / 紧凑 SCI 排版：Times New Roman、600 dpi PNG、图例不遮挡数据、浅网格、坐标标签不截断
 
+## Axis Label Examples / 坐标轴标签示例
+
+Use lowercase compact quantity names, but keep official unit capitalization. For example, use `force (N)`, not `force (n)`.
+
+变量名建议使用小写缩写，但单位符号仍按国际标准大小写。例如应写 `force (N)`，不要写成 `force (n)`。
+
+| Type / 类型 | Recommended labels / 推荐写法 |
+|---|---|
+| Time and frequency / 时间与频率 | `time (s)`, `period (s)`, `fre. (Hz)`, `ang. fre. (rad/s)` |
+| Response / 响应量 | `dis. (mm)`, `vel. (mm/s)`, `acc. (m/s^2)`, `amp. (mm)`, `peak dis. (mm)` |
+| FRF and spectra / 频响与谱 | `mag. (dB)`, `phase (deg)`, `psd (dB/Hz)`, `energy (-)` |
+| Mechanical quantities / 力学量 | `force (N)`, `moment (N m)`, `torque (N m)`, `stiff. (N/mm)`, `damp. (N s/m)` |
+| Material or field quantities / 材料或场量 | `strain (-)`, `stress (MPa)`, `pressure (kPa)`, `temp. (K)` |
+| ML metrics / 机器学习指标 | `acc. (%)`, `err. (%)`, `rmse (mm)`, `mae (mm)`, `loss (-)`, `f1 score (-)`, `auc (-)` |
+
 ## Quick Start / 快速开始
 
 Install dependencies:
