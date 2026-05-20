@@ -112,13 +112,20 @@ def add_zoom_inset(
     loc: str = "upper right",
     width: str = "36%",
     height: str = "36%",
+    bounds: tuple[float, float, float, float] | None = None,
     borderpad: float = 1.0,
-    connectors: tuple[int, int] = (2, 4),
+    connectors: tuple[int, int] | None = (2, 4),
+    connector_visible: tuple[bool, bool] = (True, True),
     grid: bool = True,
     ypad_fraction: float = 0.08,
     tick_side: Literal["auto", "left", "right"] = "auto",
 ) -> Any:
-    """Create a compact local zoom inset and mark its region on the parent axes."""
+    """Create a compact local zoom inset and mark its region on the parent axes.
+
+    Set ``bounds=(x0, y0, w, h)`` in parent-axes coordinates to reserve a
+    deterministic blank region for the inset. Use ``connector_visible`` to hide
+    any connector line that would cross important data.
+    """
     import matplotlib as mpl
     from matplotlib.ticker import MaxNLocator
     from mpl_toolkits.axes_grid1.inset_locator import inset_axes, mark_inset
@@ -129,7 +136,18 @@ def add_zoom_inset(
         y0 -= ypad
         y1 += ypad
 
-    inset = inset_axes(ax, width=width, height=height, loc=loc, borderpad=borderpad)
+    if bounds is None:
+        inset = inset_axes(ax, width=width, height=height, loc=loc, borderpad=borderpad)
+    else:
+        inset = inset_axes(
+            ax,
+            width="100%",
+            height="100%",
+            loc=loc,
+            bbox_to_anchor=bounds,
+            bbox_transform=ax.transAxes,
+            borderpad=0.0,
+        )
     inset.set_xlim(*xlim)
     inset.set_ylim(y0, y1)
     style_axes(inset, grid=grid)
@@ -147,7 +165,18 @@ def add_zoom_inset(
         inset.xaxis.tick_top()
     else:
         inset.xaxis.tick_bottom()
-    mark_inset(ax, inset, loc1=connectors[0], loc2=connectors[1], fc="none", ec="0.45", lw=0.6)
+    if connectors is not None:
+        _, connector1, connector2 = mark_inset(
+            ax,
+            inset,
+            loc1=connectors[0],
+            loc2=connectors[1],
+            fc="none",
+            ec="0.45",
+            lw=0.6,
+        )
+        connector1.set_visible(connector_visible[0])
+        connector2.set_visible(connector_visible[1])
     return inset
 
 

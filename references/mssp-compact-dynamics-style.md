@@ -63,7 +63,7 @@ For numbered manuscript figures, use consistent capitalization such as `Fig_01.p
 - Keep panel labels bold and placed consistently; use `base_size + 4 pt` as the default template size.
 - Keep legends in empty regions or outside axes when the plot is dense.
 - Keep local zoom insets in empty regions; do not let the inset cover the very feature it is meant to explain.
-- Widen the parent `ylim` when needed so the inset sits in blank space; use slightly larger save padding for inset figures.
+- Widen the parent `ylim` when needed so the inset sits in blank space; use `bounds` for stable placement, hide connector lines that cross data, and use slightly larger save padding for inset figures.
 - Keep grid lines light, behind data, and disabled on axes where they do not help reading.
 - Keep layouts compact but leave enough save margin for x/y labels; prefer `constrained_layout=True` plus `pad_inches=0.04`.
 - Use consistent SNR colors if comparing `40 dB`, `30 dB`, and `20 dB`.

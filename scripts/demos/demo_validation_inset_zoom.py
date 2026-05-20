@@ -34,7 +34,7 @@ def main() -> None:
     ax.set_xlabel("time (s)", labelpad=2)
     ax.set_ylabel("acc. (m/s$^2$)", labelpad=2)
     ax.set_xlim(0.0, 5.0)
-    ax.set_ylim(-1.18, 1.85)
+    ax.set_ylim(-1.18, 2.25)
     panel_label(ax, "(a)")
     style_axes(ax, grid=True)
     safe_legend(ax, loc="upper right", ncol=2)
@@ -48,10 +48,10 @@ def main() -> None:
         xlim=xlim,
         ylim=(ymin, ymax),
         loc="upper left",
-        width="31%",
-        height="24%",
+        bounds=(0.07, 0.70, 0.34, 0.22),
         connectors=(1, 3),
-        ypad_fraction=0.12,
+        connector_visible=(True, False),
+        ypad_fraction=0.16,
     )
     inset.plot(time, exp, color=SCI_PALETTE["experiment"], lw=0.9)
     inset.plot(time, pred, color=SCI_PALETTE["identified"], lw=0.9, ls="--")

@@ -40,7 +40,8 @@ Use this guide when the user's code or image is not identical to the demos. The 
 - Keep x/y label `labelpad` small, usually `2`.
 - Use legends inside the plot only when they do not cover important data; otherwise place outside or above.
 - Use local zoom insets only when they reveal a real detail; place them in an empty region and avoid covering peaks, dense scatter, or legends.
-- Reserve safe blank space for the inset by widening the parent axes range, often with a larger `ylim`; use `save_figure(..., pad_inches=0.06-0.08)` when inset ticks or connectors are close to the figure boundary.
+- Reserve safe blank space for the inset by widening the parent axes range, often with a larger `ylim`; use `bounds=(x0, y0, w, h)` for stable inset placement and `connector_visible` to hide connector lines that would cross important data.
+- Use `save_figure(..., pad_inches=0.06-0.08)` when inset ticks or connectors are close to the figure boundary.
 - For dense plots, reduce marker size before increasing figure size.
 
 ## Code Adaptation Checklist
@@ -50,7 +51,7 @@ Use this guide when the user's code or image is not identical to the demos. The 
 - Call `apply_sci_style(base_size=8)` for compact single-column figures.
 - Call `apply_sci_style(base_size=10)` for larger double-column or presentation-like figures.
 - Add `panel_label(ax, "(a)")` for manuscript panels.
-- Use `add_zoom_inset(ax, xlim=(...), ylim=(...))` for local magnified views instead of manually placing a large extra panel when the detail is small.
+- Use `add_zoom_inset(ax, xlim=(...), ylim=(...), bounds=(...))` for local magnified views instead of manually placing a large extra panel when the detail is small.
 - Use units with spaces: `time (s)`, `fre. (Hz)`, `dis. (mm)`.
 - Prefer lowercase compact quantity labels such as `vel.`, `acc.`, `amp.`, `mag.`, `err.`, `rmse`, and `loss`.
 - Keep official unit capitalization: `Hz`, `N`, `MPa`, and `dB` should not be forced to lowercase.

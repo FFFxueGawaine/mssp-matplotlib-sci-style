@@ -171,14 +171,22 @@ For local magnified details, use `add_zoom_inset()`:
 ```python
 from scimplstyle_mssp import add_zoom_inset
 
-inset = add_zoom_inset(ax, xlim=(2.3, 2.8), ylim=(-0.35, 0.15), loc="upper left")
+ax.set_ylim(ymin, ymax + extra_blank_space)
+inset = add_zoom_inset(
+    ax,
+    xlim=(2.3, 2.8),
+    ylim=(-0.35, 0.15),
+    bounds=(0.07, 0.70, 0.34, 0.22),
+    connectors=(1, 3),
+    connector_visible=(True, False),
+)
 inset.plot(time, experiment, color="black")
 inset.plot(time, identified, color="#E41A1C", ls="--")
 ```
 
-Leave extra blank space in the parent axes for the inset, for example by widening `ylim`, and save inset figures with a slightly larger `pad_inches` such as `0.06-0.08`.
+Leave extra blank space in the parent axes for the inset, for example by widening `ylim`. If a connector crosses the data, hide that connector with `connector_visible`. Save inset figures with a slightly larger `pad_inches` such as `0.06-0.08`.
 
-建议在主图中通过放宽 `ylim` 给局部放大图留出空白区域，并用稍大的 `pad_inches`，例如 `0.06-0.08`，避免刻度或连接线贴边。
+建议在主图中通过放宽 `ylim` 给局部放大图留出空白区域。若连接线穿过主曲线，可用 `connector_visible` 隐藏对应连接线，并用稍大的 `pad_inches`，例如 `0.06-0.08`，避免刻度或连接线贴边。
 
 ## Recommended Working Folder / 推荐工作目录
 
