@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+output/
+*.png
+*.jpg
+*.jpeg
+*.tif
+*.tiff
+*.pdf
+*.svg
