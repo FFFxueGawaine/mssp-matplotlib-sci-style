@@ -76,7 +76,7 @@ For each exported figure, collect:
 - For these demos, export `PNG` at `600 dpi` by default; generate `PDF` or `SVG` only when explicitly requested by the user or journal.
 - Use single-column width around `85 mm`; double-column width around `170-180 mm`.
 - Use bold panel labels `(a)`, `(b)`, `(c)` consistently; default to `base_size + 4 pt`, e.g. `14 pt` when base text is `10 pt`.
-- Place panel labels according to the journal template: top-center, upper-left, bottom-center, and lower-left are all valid when used consistently.
+- Place panel labels above each axes by default: `panel_label(ax, "(a)")` / `loc="top-center"`. Use `loc="bottom-center"` only when the journal template or reference figure clearly puts panel labels below the axes. Do not offer other panel-label positions in beginner workflows.
 - Keep title fonts configurable: use Times New Roman for English SCI titles, and allow SimSun (`宋体`) for Chinese report or Chinese-title figures.
 - Write units with a space before parentheses: `time (s)`, `fre. (Hz)`, `dis. (mm)`, `mag. (dB)`.
 - Prefer lowercase compact quantity labels such as `dis.`, `vel.`, `acc.`, `amp.`, `mag.`, `err.`, and `loss`; keep official unit capitalization such as `Hz`, `N`, `MPa`, and `dB`.

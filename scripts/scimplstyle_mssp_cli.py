@@ -207,7 +207,7 @@ PRE_RUN_BRIEF_ZH = """# sci-paper-plot-skill 运行前提示单
 2. 数据来源：已有真实数据，还是先用占位数据？如果有数据，请给 CSV/TXT/NPY/Excel 的绝对路径。
 3. 输出位置：生成脚本和图片写到哪个工作文件夹？必须在 skill 安装目录外。
 4. 语言和字体：英文 SCI、中文报告，还是中英混排？中文标题是否需要宋体。
-5. 子图标号：`(a)(b)(c)` 放上方居中、左上角、下方居中、左下方，还是暂时不放。
+5. 子图标号：`(a)(b)(c)` 默认上方居中；只有期刊或参考图要求时才改为下方居中。
 6. 版面约束：单栏/双栏、几行几列、是否需要图例、色条、局部放大框。
 
 ## 可以直接复制给用户的问题
@@ -218,7 +218,7 @@ PRE_RUN_BRIEF_ZH = """# sci-paper-plot-skill 运行前提示单
 2. 你现在有真实数据吗？如果有，请给数据文件绝对路径；如果没有，我先用占位数据。
 3. 输出脚本和图片放到哪个工作文件夹？我不会写进 skill 安装目录。
 4. 图中文字用英文 SCI、中文报告，还是中英混排？中文标题是否用宋体？
-5. `(a)(b)(c)` 标号放在哪里：上方居中、左上角、下方居中、左下方，还是不放？
+5. `(a)(b)(c)` 标号默认上方居中；是否有期刊或参考图要求必须放下方居中？如果没有，我按默认处理。
 6. 版面是单图、1x3、2x2、2x3，还是按参考图？
 ```
 
@@ -241,7 +241,7 @@ Before copying demos, generating preview galleries, running plotting scripts, or
 2. Data source: real data or placeholder data first. If real data exists, ask for absolute CSV/TXT/NPY/Excel paths.
 3. Output location: where scripts and figures should be written. It must be outside the installed skill folder.
 4. Language and fonts: English SCI, Chinese report, or mixed. Confirm whether Chinese titles should use SimSun.
-5. Panel labels: top-center, upper-left, bottom-center, lower-left, or none.
+5. Panel labels: top-center by default; use bottom-center only when required by the journal template or reference figure.
 6. Layout constraints: single/double column, rows and columns, legend, colorbar, or inset needs.
 
 ## Prompt to ask the user
@@ -252,7 +252,7 @@ Before I run the plotting program, please tell me:
 2. Do you have real data? If yes, provide absolute data paths; otherwise I will use placeholder data first.
 3. Which working folder should receive the script and generated figures? I will not write them into the skill install folder.
 4. Should the text use English SCI style, Chinese report style, or mixed language? Should Chinese titles use SimSun?
-5. Where should `(a)(b)(c)` panel labels be placed: top-center, upper-left, bottom-center, lower-left, or none?
+5. Panel labels use top-center by default. Does the journal template or reference figure require bottom-center? If not, I will keep the default.
 6. Is the layout single panel, 1x3, 2x2, 2x3, or based on a reference figure?
 ```
 

@@ -79,17 +79,16 @@ def panel_label(
     x: float = 0.5,
     y: float = 1.04,
     size: int | None = None,
-    loc: Literal["top-center", "upper-left", "bottom-center", "lower-left"] | None = None,
+    loc: Literal["top-center", "bottom-center"] | None = None,
     ha: Literal["left", "center", "right"] | None = None,
     va: Literal["top", "center", "bottom"] | None = None,
     fontfamily: str | None = None,
 ) -> None:
-    """Place a bold panel label such as '(a)' in a journal-compatible location.
+    """Place a bold panel label such as '(a)' in a controlled location.
 
     The default keeps the historical top-center placement. Set ``loc`` for
-    common alternatives:
-    ``"upper-left"`` for inside the top-left corner, or ``"bottom-center"``
-    when a journal wants panel labels below each axes.
+    the only regular alternative: ``"bottom-center"`` when a journal wants
+    panel labels below each axes.
     """
     if size is None:
         import matplotlib as mpl
@@ -98,10 +97,10 @@ def panel_label(
     if loc is not None:
         presets = {
             "top-center": (0.5, 1.04, "center", "bottom"),
-            "upper-left": (0.02, 0.98, "left", "top"),
             "bottom-center": (0.5, -0.20, "center", "top"),
-            "lower-left": (0.02, -0.20, "left", "top"),
         }
+        if loc not in presets:
+            raise ValueError("panel_label loc must be 'top-center' or 'bottom-center'.")
         x, y, preset_ha, preset_va = presets[loc]
         if ha is None:
             ha = preset_ha
