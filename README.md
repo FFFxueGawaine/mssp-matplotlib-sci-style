@@ -28,98 +28,44 @@ The template map is in `references/hb-clearance-paper-figure-templates.md`, and 
 
 逐图模板说明位于 `references/hb-clearance-paper-figure-templates.md`，可运行的占位数据模板脚本是 `scripts/demos/demo_hb_clearance_templates.py`。
 
-## Paper Figure Preview / 论文图片展示
+## Paper Figure Templates / 论文逐图模板
 
-These are compressed README previews of the available exported manuscript figures. The source archive currently contains Fig. 4-Fig. 12 and Fig. 14-Fig. 18; exported previews for Fig. 1-Fig. 3 and Fig. 13 were not present in the local figure folder used for this update.
+This skill provides one reusable template function for each main figure in the clearance-system paper. These templates are not copied manuscript images; they are Matplotlib starting points with synthetic placeholder data that can be replaced by the user's real arrays.
 
-下面是已导出论文图的 README 压缩预览。当前本地图像目录中能找到 Fig. 4-Fig. 12 和 Fig. 14-Fig. 18；本次没有在本地图像目录中找到 Fig. 1-Fig. 3 和 Fig. 13 的导出图。
+本 skill 为间隙非线性系统论文的每张主图提供一个可复用模板函数。这些模板不是论文原图，而是带合成占位数据的 Matplotlib 起点，后续可替换为真实数据。
 
-<table>
-  <tr>
-    <td width="50%">
-      <img src="assets/paper-figures/hb-clearance-system/fig-004-ppc-kde.jpg" alt="Fig. 4 posterior predictive KDE">
-      <br>
-      <sub>Fig. 4 / Posterior predictive KDE</sub>
-    </td>
-    <td width="50%">
-      <img src="assets/paper-figures/hb-clearance-system/fig-005-library-selection.jpg" alt="Fig. 5 candidate library selection">
-      <br>
-      <sub>Fig. 5 / Candidate library selection</sub>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <img src="assets/paper-figures/hb-clearance-system/fig-006-posterior-density.jpg" alt="Fig. 6 posterior density grid">
-      <br>
-      <sub>Fig. 6 / Posterior density grid</sub>
-    </td>
-    <td width="50%">
-      <img src="assets/paper-figures/hb-clearance-system/fig-007-tristable-schematic.jpg" alt="Fig. 7 tri-stable schematic">
-      <br>
-      <sub>Fig. 7 / Tri-stable mechanism schematic</sub>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <img src="assets/paper-figures/hb-clearance-system/fig-008-piecewise-force.jpg" alt="Fig. 8 piecewise restoring force">
-      <br>
-      <sub>Fig. 8 / Piecewise restoring force</sub>
-    </td>
-    <td width="50%">
-      <img src="assets/paper-figures/hb-clearance-system/fig-009-library-selection.jpg" alt="Fig. 9 candidate library selection">
-      <br>
-      <sub>Fig. 9 / Candidate library selection</sub>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <img src="assets/paper-figures/hb-clearance-system/fig-010-density-triplet.jpg" alt="Fig. 10 posterior density triplet">
-      <br>
-      <sub>Fig. 10 / Posterior density triplet</sub>
-    </td>
-    <td width="50%">
-      <img src="assets/paper-figures/hb-clearance-system/fig-011-joint-posterior.jpg" alt="Fig. 11 joint posterior scatter">
-      <br>
-      <sub>Fig. 11 / Joint posterior scatter</sub>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <img src="assets/paper-figures/hb-clearance-system/fig-012-validation-timeseries.jpg" alt="Fig. 12 validation time series">
-      <br>
-      <sub>Fig. 12 / Validation time series</sub>
-    </td>
-    <td width="50%">
-      <img src="assets/paper-figures/hb-clearance-system/fig-014-time-frequency.jpg" alt="Fig. 14 time-frequency response">
-      <br>
-      <sub>Fig. 14 / Time-frequency response</sub>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <img src="assets/paper-figures/hb-clearance-system/fig-015-time-density.jpg" alt="Fig. 15 time response and density">
-      <br>
-      <sub>Fig. 15 / Time response and density</sub>
-    </td>
-    <td width="50%">
-      <img src="assets/paper-figures/hb-clearance-system/fig-016-joint-posterior.jpg" alt="Fig. 16 experimental joint posterior">
-      <br>
-      <sub>Fig. 16 / Experimental joint posterior</sub>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <img src="assets/paper-figures/hb-clearance-system/fig-017-multidof-validation.jpg" alt="Fig. 17 multi-response validation">
-      <br>
-      <sub>Fig. 17 / Multi-response validation</sub>
-    </td>
-    <td width="50%">
-      <img src="assets/paper-figures/hb-clearance-system/fig-018-force-phase.jpg" alt="Fig. 18 force and phase validation">
-      <br>
-      <sub>Fig. 18 / Force and phase validation</sub>
-    </td>
-  </tr>
-</table>
+Run all templates:
+
+运行全部逐图模板：
+
+```bash
+python scripts/demos/demo_hb_clearance_templates.py
+```
+
+| Figure | Template function | Generated template file |
+|---|---|---|
+| Fig. 1 | `template_fig001_bayesian_workflow` | `Fig.001_bayesian_workflow_template.png` |
+| Fig. 2 | `template_fig002_clearance_basis` | `Fig.002_clearance_basis_template.png` |
+| Fig. 3 | `template_fig003_one_sided_impact` | `Fig.003_one_sided_impact_template.png` |
+| Fig. 4 | `template_fig004_ppc_kde` | `Fig.004_ppc_kde_template.png` |
+| Fig. 5 | `template_fig005_library_selection` | `Fig.005_library_selection_template.png` |
+| Fig. 6 | `template_fig006_posterior_density_grid` | `Fig.006_posterior_density_grid_template.png` |
+| Fig. 7 | `template_fig007_tristable_nes_schematic` | `Fig.007_tristable_nes_schematic_template.png` |
+| Fig. 8 | `template_fig008_piecewise_force` | `Fig.008_piecewise_force_template.png` |
+| Fig. 9 | `template_fig009_library_selection_tristable` | `Fig.009_library_selection_tristable_template.png` |
+| Fig. 10 | `template_fig010_density_triplet` | `Fig.010_density_triplet_template.png` |
+| Fig. 11 | `template_fig011_joint_posterior_scatter` | `Fig.011_joint_posterior_scatter_template.png` |
+| Fig. 12 | `template_fig012_validation_timeseries` | `Fig.012_validation_timeseries_template.png` |
+| Fig. 13 | `template_fig013_experimental_setup` | `Fig.013_experimental_setup_template.png` |
+| Fig. 14 | `template_fig014_time_frequency_composite` | `Fig.014_time_frequency_composite_template.png` |
+| Fig. 15 | `template_fig015_time_hist_clearance` | `Fig.015_time_hist_clearance_template.png` |
+| Fig. 16 | `template_fig016_experimental_joint_posterior` | `Fig.016_experimental_joint_posterior_template.png` |
+| Fig. 17 | `template_fig017_multidof_validation` | `Fig.017_multidof_validation_template.png` |
+| Fig. 18 | `template_fig018_force_phase_validation` | `Fig.018_force_phase_validation_template.png` |
+
+For the detailed figure-by-figure adaptation notes, see `references/hb-clearance-paper-figure-templates.md`.
+
+逐图的结构、风格和替换数据建议见 `references/hb-clearance-paper-figure-templates.md`。
 
 ## Example Figures / 示例图片
 
@@ -341,8 +287,7 @@ sci-paper-plot-skill/
 ├── agents/
 │   └── openai.yaml
 ├── assets/
-│   ├── examples/
-│   └── paper-figures/
+│   └── examples/
 ├── references/
 └── scripts/
     ├── audit_figures.py
@@ -362,9 +307,9 @@ Run the package check before sharing:
 python scripts/package_check.py .
 ```
 
-The package intentionally keeps only curated preview images under `assets/examples/` and `assets/paper-figures/`. Demo-generated outputs should stay outside the skill folder and inside the user's working folder.
+The package intentionally keeps only curated preview images under `assets/examples/`. Demo-generated outputs should stay outside the skill folder and inside the user's working folder.
 
-本仓库只保留 `assets/examples/` 和 `assets/paper-figures/` 中精选的预览图。demo 运行后生成的图片应放在 skill 文件夹外部、用户自己的工作目录中，避免把临时输出打包进去。
+本仓库只保留 `assets/examples/` 中精选的预览图。demo 运行后生成的图片应放在 skill 文件夹外部、用户自己的工作目录中，避免把临时输出打包进去。
 
 ## Installation As A Codex Skill / 安装为 Codex Skill
 

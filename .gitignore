@@ -18,6 +18,3 @@ output/
 !assets/
 !assets/examples/
 !assets/examples/*.png
-!assets/paper-figures/
-!assets/paper-figures/hb-clearance-system/
-!assets/paper-figures/hb-clearance-system/*.jpg
