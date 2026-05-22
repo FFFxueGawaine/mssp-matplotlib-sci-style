@@ -241,6 +241,24 @@ def check_demo_index(root: Path) -> list[str]:
     return problems
 
 
+def check_layout_spacing_guidance(root: Path) -> list[str]:
+    problems: list[str] = []
+    style_text = read_text(root / "scripts" / "scimplstyle_mssp.py")
+    if "def set_panel_spacing(" not in style_text:
+        problems.append("scimplstyle_mssp.py missing set_panel_spacing helper")
+    if "set_panel_spacing(fig)" not in style_text:
+        problems.append("save_figure should apply set_panel_spacing(fig) before saving")
+    docs = [
+        root / "SKILL.md",
+        root / "references" / "mssp-compact-dynamics-style.md",
+        root / "references" / "figure-quality-constraints.zh-CN.md",
+    ]
+    for path in docs:
+        if "set_panel_spacing" not in read_text(path):
+            problems.append(f"{path.relative_to(root)} should mention set_panel_spacing")
+    return problems
+
+
 def run_checks(root: Path) -> list[str]:
     checks = [
         check_required_files,
@@ -254,6 +272,7 @@ def run_checks(root: Path) -> list[str]:
         check_demo_count,
         check_beginner_guide,
         check_demo_index,
+        check_layout_spacing_guidance,
     ]
     problems: list[str] = []
     for check in checks:

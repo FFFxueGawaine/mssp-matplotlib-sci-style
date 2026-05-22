@@ -263,6 +263,30 @@ def safe_legend(
     return legend
 
 
+def set_panel_spacing(
+    fig: Any,
+    w_pad: float = 0.04,
+    h_pad: float = 0.04,
+    wspace: float = 0.10,
+    hspace: float = 0.10,
+) -> None:
+    """Keep labels, titles, legends, and colorbars from colliding between panels.
+
+    Use this after creating multi-panel figures. Values follow Matplotlib's
+    constrained-layout convention: ``w_pad``/``h_pad`` are inches, while
+    ``wspace``/``hspace`` are fractions of subplot size.
+    """
+    if hasattr(fig, "get_constrained_layout") and fig.get_constrained_layout():
+        fig.set_constrained_layout_pads(
+            w_pad=w_pad,
+            h_pad=h_pad,
+            wspace=wspace,
+            hspace=hspace,
+        )
+    elif hasattr(fig, "subplots_adjust"):
+        fig.subplots_adjust(wspace=wspace, hspace=hspace)
+
+
 def save_figure(
     fig: Any,
     stem: str,
@@ -274,8 +298,7 @@ def save_figure(
     """Save a figure in high-resolution bitmap formats by default."""
     out_path = Path(out_dir)
     out_path.mkdir(parents=True, exist_ok=True)
-    if hasattr(fig, "get_constrained_layout") and fig.get_constrained_layout():
-        fig.set_constrained_layout_pads(w_pad=0.02, h_pad=0.02, wspace=0.02, hspace=0.02)
+    set_panel_spacing(fig)
     fig.canvas.draw()
     written: list[Path] = []
     for fmt in formats:

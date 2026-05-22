@@ -47,7 +47,7 @@ Style name: `MSSP Compact Dynamics`.
 - Do not add `(-)` to count/index axes such as `iteration`, `epoch`, `batch`, `sample index`, or `sample order`; common ML metrics such as `loss`, `f1 score`, and `auc` also omit `(-)` by default.
 - Keep labels, legends, line widths, markers, grid visibility, inset zooms, and colorbar placement consistent across the same figure family.
 - Keep legends and grid lines secondary to data; use `safe_legend()` or an empty corner for legends, and place dense legends outside the axes.
-- Keep layouts compact but never crop axis labels; use `constrained_layout=True`, small `labelpad`, and save with safety padding.
+- Keep layouts compact but never allow labels, titles, legends, colorbars, or panel labels to overlap between subplots; use `constrained_layout=True`, `set_panel_spacing(fig)`, small `labelpad`, and safety padding.
 - Read `references/figure-quality-constraints.zh-CN.md` and `references/mssp-compact-dynamics-style.md` for the detailed style checklist.
 
 ## Style Levels

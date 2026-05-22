@@ -45,7 +45,8 @@ set_panel_title(ax, "Error distribution", lang="en")
 
 - 单栏图宽约 `85 mm`，双栏图宽约 `170-180 mm`。
 - 多子图优先使用规则网格：`1 x 3`、`2 x 2`、`2 x 3`。
-- `constrained_layout=True` 优先，保存时保留 `pad_inches=0.04` 或更大。
+- `constrained_layout=True` 优先，多子图调用 `set_panel_spacing(fig)`，保存时保留 `pad_inches=0.04` 或更大。
+- 子图之间的 y 轴标签、标题、图例、色条和 `(a)(b)(c)` 标号不能互相遮挡；`1 x 3`、`2 x 2`、`2 x 3` 导出后必须检查相邻子图间距。
 - 色条、图例、局部放大框不应挤压主要数据。
 - 下方标号、长 x 轴标签、中文标题同时出现时，需要增大图高或底部留白。
 

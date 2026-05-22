@@ -67,7 +67,8 @@ For numbered manuscript figures, use consistent capitalization such as `Fig_01.p
 - Keep local zoom insets in empty regions; do not let the inset cover the very feature it is meant to explain.
 - Widen the parent `ylim` when needed so the inset sits in blank space; use `bounds` for stable placement, hide connector lines that cross data, and use slightly larger save padding for inset figures.
 - Keep grid lines light, behind data, and disabled on axes where they do not help reading.
-- Keep layouts compact but leave enough save margin for x/y labels; prefer `constrained_layout=True` plus `pad_inches=0.04`.
+- Keep layouts compact but leave enough spacing for x/y labels, titles, legends, colorbars, and panel labels. Prefer `constrained_layout=True`, call `set_panel_spacing(fig)` for multi-panel figures, and save with `pad_inches=0.04` or larger.
+- For `1 x 3`, `2 x 2`, and `2 x 3` layouts, inspect the rendered PNG and increase `wspace`/`hspace` when y labels, colorbars, or legends sit between adjacent axes.
 - Use consistent SNR colors if comparing `40 dB`, `30 dB`, and `20 dB`.
 - Avoid large annotations on dense scatter or heatmap figures.
 
