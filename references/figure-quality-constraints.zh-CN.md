@@ -53,6 +53,8 @@ set_panel_title(ax, "Error distribution", lang="en")
 
 - 单位前留空格：`time (s)`，不要写 `time(s)`。
 - 英文 SCI 图优先短标签：`dis. (mm)`、`vel. (mm/s)`、`fre. (Hz)`。
+- 迭代次数、轮次、批次、样本序号这类计数或索引默认不加 `(-)`，直接写 `iteration`、`epoch`、`batch`、`sample index`。
+- `loss`、`f1 score`、`auc` 这类常见机器学习指标默认也不加 `(-)`；只有明确是归一化物理量、系数、概率、密度代理或能量类量时才保留 `(-)`。
 - 中文报告可写：`位移 (mm)`、`频率 (Hz)`、`误差 (mm)`。
 - 同一篇论文里同一物理量只用一种写法，不要混用 `frequency`、`fre.`、`频率`。
 

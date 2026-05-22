@@ -60,6 +60,8 @@ For numbered manuscript figures, use consistent capitalization such as `Fig_01.p
 - Change `time(s)` to `time (s)`.
 - Change `fre.(Hz)` to `fre. (Hz)` or `frequency (Hz)`.
 - Change `dis.(mm)` to `dis. (mm)`.
+- Do not add `(-)` to count or index axes such as `iteration`, `epoch`, `batch`, `sample index`, or `sample order`.
+- Use `loss`, `f1 score`, and `auc` without `(-)` by default; reserve `(-)` for explicitly normalized physical quantities, coefficients, probabilities, density proxies, or energy-like measures.
 - Keep panel labels bold and placed consistently; use `base_size + 4 pt` as the default template size.
 - Keep legends in empty regions or outside axes when the plot is dense.
 - Keep local zoom insets in empty regions; do not let the inset cover the very feature it is meant to explain.
@@ -78,4 +80,5 @@ For numbered manuscript figures, use consistent capitalization such as `Fig_01.p
 | FRF and spectra | `mag. (dB)`, `phase (deg)`, `psd (dB/Hz)`, `energy (-)` |
 | Mechanical properties | `force (N)`, `moment (N m)`, `torque (N m)`, `stiff. (N/mm)`, `damp. (N s/m)`, `mass (kg)` |
 | Material or field quantities | `strain (-)`, `stress (MPa)`, `pressure (kPa)`, `temp. (K)` |
-| Machine-learning metrics | `acc. (%)`, `err. (%)`, `rmse (mm)`, `mae (mm)`, `loss (-)`, `f1 score (-)`, `auc (-)`, `train. time (s)`, `infer. time (ms)` |
+| Training progress | `iteration`, `epoch`, `batch`, `sample index`, `sample order`, `training samples` |
+| Machine-learning metrics | `acc. (%)`, `err. (%)`, `rmse (mm)`, `mae (mm)`, `loss`, `f1 score`, `auc`, `train. time (s)`, `infer. time (ms)` |
