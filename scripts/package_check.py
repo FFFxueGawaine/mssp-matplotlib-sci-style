@@ -246,6 +246,8 @@ def check_layout_spacing_guidance(root: Path) -> list[str]:
     style_text = read_text(root / "scripts" / "scimplstyle_mssp.py")
     if "def set_panel_spacing(" not in style_text:
         problems.append("scimplstyle_mssp.py missing set_panel_spacing helper")
+    if "def apply_tight_layout(" not in style_text:
+        problems.append("scimplstyle_mssp.py missing apply_tight_layout helper")
     if "set_panel_spacing(fig)" not in style_text:
         problems.append("save_figure should apply set_panel_spacing(fig) before saving")
     docs = [
@@ -256,6 +258,8 @@ def check_layout_spacing_guidance(root: Path) -> list[str]:
     for path in docs:
         if "set_panel_spacing" not in read_text(path):
             problems.append(f"{path.relative_to(root)} should mention set_panel_spacing")
+        if "apply_tight_layout" not in read_text(path):
+            problems.append(f"{path.relative_to(root)} should mention apply_tight_layout")
     return problems
 
 

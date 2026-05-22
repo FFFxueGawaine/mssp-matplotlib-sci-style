@@ -285,6 +285,29 @@ def set_panel_spacing(
         )
     elif hasattr(fig, "subplots_adjust"):
         fig.subplots_adjust(wspace=wspace, hspace=hspace)
+    setattr(fig, "_scimplstyle_layout_applied", True)
+
+
+def apply_tight_layout(
+    fig: Any,
+    pad: float = 0.35,
+    w_pad: float = 2.0,
+    h_pad: float = 1.0,
+    rect: tuple[float, float, float, float] | None = None,
+) -> None:
+    """Apply Matplotlib tight layout after all panel labels and legends exist.
+
+    Use this for dense multi-panel figures when labels should be close but must
+    not overlap. Create the figure without ``constrained_layout=True``, add all
+    labels/legends/colorbars, then call this function before saving.
+    """
+    if hasattr(fig, "set_constrained_layout"):
+        fig.set_constrained_layout(False)
+    kwargs: dict[str, Any] = {"pad": pad, "w_pad": w_pad, "h_pad": h_pad}
+    if rect is not None:
+        kwargs["rect"] = rect
+    fig.tight_layout(**kwargs)
+    setattr(fig, "_scimplstyle_layout_applied", True)
 
 
 def save_figure(
@@ -298,7 +321,8 @@ def save_figure(
     """Save a figure in high-resolution bitmap formats by default."""
     out_path = Path(out_dir)
     out_path.mkdir(parents=True, exist_ok=True)
-    set_panel_spacing(fig)
+    if not getattr(fig, "_scimplstyle_layout_applied", False):
+        set_panel_spacing(fig)
     fig.canvas.draw()
     written: list[Path] = []
     for fmt in formats:
