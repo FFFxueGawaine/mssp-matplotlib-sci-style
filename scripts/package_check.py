@@ -28,7 +28,10 @@ REQUIRED_FILES = [
     "scripts/audit_figures.py",
     "references/mssp-compact-dynamics-style.md",
     "references/codex-beginner-guide.md",
+    "references/codex-beginner-guide.zh-CN.md",
+    "references/codex-beginner-guide.en.md",
     "references/pre-run-brief.zh-CN.md",
+    "references/pre-run-brief.en.md",
     "references/adaptation-guide.md",
     "references/mssp-nonlinear-dynamics-examples.md",
     "references/hb-clearance-paper-figure-templates.md",
@@ -161,10 +164,28 @@ def check_beginner_guide(root: Path) -> list[str]:
     for command in ["beginner-guide", "run-brief", "recommend", "preview-gallery", "check-demos"]:
         if command not in cli_text:
             problems.append(f"CLI is missing {command} subcommand")
+    for expected in ["BEGINNER_GUIDE_FILES", "PRE_RUN_BRIEF_FILES", "read_reference_group"]:
+        if expected not in cli_text:
+            problems.append(f"CLI should externalize beginner text through `{expected}`")
+    for forbidden in [
+        'BEGINNER_GUIDE_ZH = """',
+        'BEGINNER_GUIDE_EN = """',
+        'BEGINNER_GUIDE_BILINGUAL = """',
+        'PRE_RUN_BRIEF_ZH = """',
+        'PRE_RUN_BRIEF_EN = """',
+    ]:
+        if forbidden in cli_text:
+            problems.append(f"CLI should not embed long guide text: {forbidden}")
     demo_names = set(path.name for path in (root / "scripts" / "demos").glob("demo_*.py"))
     referenced = set(re.findall(r"`(demo_[A-Za-z0-9_]+\.py)`", cli_text))
-    referenced.update(re.findall(r"`(demo_[A-Za-z0-9_]+\.py)`", read_text(root / "references" / "codex-beginner-guide.md")))
-    referenced.update(re.findall(r"`(demo_[A-Za-z0-9_]+\.py)`", read_text(root / "references" / "plot-type-map.zh-CN.md")))
+    guide_paths = [
+        root / "references" / "codex-beginner-guide.md",
+        root / "references" / "codex-beginner-guide.zh-CN.md",
+        root / "references" / "codex-beginner-guide.en.md",
+        root / "references" / "plot-type-map.zh-CN.md",
+    ]
+    for guide_path in guide_paths:
+        referenced.update(re.findall(r"`(demo_[A-Za-z0-9_]+\.py)`", read_text(guide_path)))
     for demo_name in sorted(referenced):
         if demo_name not in demo_names:
             problems.append(f"beginner guide references missing demo: {demo_name}")

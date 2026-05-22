@@ -1,240 +1,91 @@
 # Sci Paper Plot Skill
 
-Reusable Codex skill for turning SCI paper figures into classified, reusable Matplotlib templates.
+Reusable Codex skill for turning SCI paper figures into classified, reusable Matplotlib and Seaborn templates.
 
-面向 SCI 论文绘图的 Codex Skill：把论文图片按“论文功能”分类，再沉淀为可复用的 Matplotlib 模板。
+中文用户请优先阅读 `README.zh-CN.md`。
 
-## What Problem It Solves / 解决什么问题
+## What It Solves
 
-科研绘图常见的问题不是“不会画一张图”，而是：
+This skill helps with a recurring paper-figure problem: figures are scattered across notebooks, styles drift between panels, and good reference-paper plots are hard to reuse. The workflow is:
 
-- 同一篇论文里图片风格不统一；
-- 旧 Notebook 里 `savefig` 分散，难以复现；
-- 看到一篇好论文的图，只能临摹，不能沉淀成模板；
-- 论文图类型很多，缺少“图的功能分类”和对应模板。
+1. Audit existing figures and notebook `savefig` calls.
+2. Classify figures by manuscript role, not by file extension.
+3. Recommend or copy a runnable demo.
+4. Replace placeholder arrays with real project data outside the skill folder.
 
-This skill solves that by combining figure audit, role-based classification, and reusable plotting demos.
+## Core Ideas
 
-本 skill 的做法是：先审计图片，再按论文功能分类，最后把每类图沉淀成可运行 demo。
+- Classify by manuscript role: validation, uncertainty, FRF, time-frequency, candidate-library selection, schematic, etc.
+- Keep style and scientific meaning together: axis semantics, units, panel labels, density meaning, and validation hierarchy.
+- Use synthetic demo data in the skill package; keep private paper data and generated figures in the user workspace.
+- Let the skill improve by adding paper maps, demo metadata, and package checks after each curated reference paper.
 
-## Core Innovation / 方式与创新点
-
-1. **Classify by manuscript role, not file type.**  
-   A figure is treated as validation, posterior density, candidate-library selection, FRF, time-frequency map, schematic, and so on. This makes template reuse more reliable than simply matching `.jpg` or `.png`.
-
-2. **Turn paper figures into template functions.**  
-   The skill does not store a paper's original figures as the main asset. It creates reusable Matplotlib functions with synthetic placeholder data, then users replace the arrays with real data.
-
-3. **Keep style and scientific meaning together.**  
-   Templates preserve axis semantics, units, panel labels, density meaning, uncertainty meaning, and validation hierarchy instead of only copying colors and fonts.
-
-4. **Use a self-learning loop.**  
-   For a new paper, Codex can audit figures, classify them, create a figure-template map, add demos, and validate the package. The skill becomes better after each curated paper.
-
-## Built-In Example / 内置论文示例
-
-The current paper-specific example is:
+## Built-In Reference Paper
 
 - Yusheng Wang, Hui Qian, Qinghua Liu, Yinhang Ma, Dong Jiang. **Hierarchical Bayesian model for identifying clearance-type nonlinear system**. *Mechanical Systems and Signal Processing*, 235, 112891, 2025.
 - DOI: [10.1016/j.ymssp.2025.112891](https://doi.org/10.1016/j.ymssp.2025.112891)
-- ScienceDirect: [article page](https://www.sciencedirect.com/science/article/abs/pii/S0888327025005928)
 
-Resources:
+Paper-specific resources:
 
-- `README.zh-CN.md` - Chinese-first quickstart for beginner users.
-- `references/hb-clearance-paper-figure-templates.md` - Fig. 1-Fig. 18 classification and template map.
-- `references/common-plot-types-catalog.md` - common Matplotlib and Seaborn plot-type catalog.
-- `references/plot-type-map.zh-CN.md` - Chinese plot type to demo lookup table.
-- `references/demo-index.json` - machine-readable demo metadata for recommendation and preview commands.
-- `scripts/demos/demo_hb_clearance_templates.py` - one runnable template function set for Fig. 1-Fig. 18.
-- `scripts/demos/demo_hb_fig14_three_column.py` - Fig. 14-style one-row three-column response demo.
-- `scripts/demos/demo_seaborn_common_gallery.py` - common Seaborn templates for tidy `DataFrame` plotting.
+- `references/hb-clearance-paper-figure-templates.md`
+- `scripts/demos/demo_hb_clearance_templates.py`
+- `scripts/demos/demo_hb_fig14_three_column.py`
 
-## Recommended Installation / 建议安装方式
-
-Install as a Codex skill by cloning the repository into the Codex skills folder:
+## Install
 
 ```bash
 git clone https://github.com/FFFxueGawaine/sci-paper-plot-skill.git ~/.codex/skills/sci-paper-plot-skill
-```
-
-Then install runtime dependencies:
-
-```bash
 cd ~/.codex/skills/sci-paper-plot-skill
 python -m pip install -r requirements.txt
 ```
 
-After installation, ask Codex:
-
-```text
-Use $sci-paper-plot-skill to classify my paper figures and create reusable Matplotlib templates.
-```
-
-For beginners, start with:
-
-```text
-Use $sci-paper-plot-skill. I am a beginner. Please inspect my paper figure folder, classify the figures, and tell me which demo to start from. Do not edit original files.
-```
-
-For updates:
+Update later with:
 
 ```bash
 cd ~/.codex/skills/sci-paper-plot-skill
 git pull
 ```
 
-## Quick Use / 快速使用
-
-Audit exported paper figures and Notebook `savefig` calls:
-
-```bash
-python scripts/audit_figures.py "path/to/paper/figures" --markdown
-```
-
-List available demos:
-
-```bash
-python scripts/scimplstyle_mssp_cli.py list-demos
-```
-
-Show the beginner template-selection guide:
+## Quick Use
 
 ```bash
 python scripts/scimplstyle_mssp_cli.py beginner-guide --lang zh
-```
-
-Print the pre-run brief before copying demos or generating figures:
-
-```bash
 python scripts/scimplstyle_mssp_cli.py run-brief --lang zh
-```
-
-Recommend demos by a natural-language goal:
-
-```bash
 python scripts/scimplstyle_mssp_cli.py recommend "误差分布" --lang zh
-python scripts/scimplstyle_mssp_cli.py recommend "time response" --lang en --top 3
+python scripts/scimplstyle_mssp_cli.py list-demos
+python scripts/audit_figures.py "path/to/paper/figures" --markdown
 ```
 
-Copy demos to a working folder:
+Commands that generate or copy files should target a working folder outside this skill package:
 
 ```bash
 python scripts/scimplstyle_mssp_cli.py copy-demos paper-plot-workspace
-```
-
-Run the clearance-paper full template set:
-
-```bash
-python scripts/demos/demo_hb_clearance_templates.py
-```
-
-Run the Fig. 14 one-row three-column demo:
-
-```bash
-python scripts/demos/demo_hb_fig14_three_column.py
-```
-
-Run the common Seaborn gallery:
-
-```bash
-python scripts/demos/demo_seaborn_common_gallery.py
-```
-
-Generate a preview gallery outside the skill folder:
-
-```bash
 python scripts/scimplstyle_mssp_cli.py preview-gallery paper-plot-preview --set curated
 python scripts/scimplstyle_mssp_cli.py check-demos paper-plot-preview --set curated
 ```
 
-## Current Plot Types / 当前绘图类型
+## Main References
 
-The skill currently covers these reusable figure families:
+- `README.zh-CN.md`: Chinese-first quickstart.
+- `references/codex-beginner-guide.zh-CN.md`: Chinese beginner route.
+- `references/pre-run-brief.zh-CN.md`: questions to ask before file-writing plot operations.
+- `references/mssp-compact-dynamics-style.md`: figure families, style corrections, and compact axis labels.
+- `references/figure-quality-constraints.zh-CN.md`: layout, language, title font, panel-label, and export constraints.
+- `references/common-plot-types-catalog.md`: common Matplotlib and Seaborn plot types.
+- `references/plot-type-map.zh-CN.md`: Chinese plot-name to API/demo mapping.
+- `references/demo-index.json`: machine-readable demo index used by `recommend`, `preview-gallery`, and `check-demos`.
 
-- **Matplotlib engineering templates:** line, scatter, confidence band, errorbar, stem, grouped/stacked/horizontal bar, histogram, KDE-like density, boxplot, violin plot, ECDF, contour, contourf, pcolormesh, quiver, streamplot, surface, wireframe.
-- **Seaborn statistical templates:** scatterplot, lineplot, regplot, residplot, histplot, kdeplot, ecdfplot, rugplot, boxplot, violinplot, stripplot, swarmplot, barplot, pointplot, countplot, heatmap, pairplot, relplot, catplot, displot.
-- **Paper-specific SCI templates:** Fig. 14-style one-row three-column response plot, FRF comparison, time-frequency map, validation with inset zoom, posterior/KDE uncertainty, sparse candidate-library selection, machine-learning curves and matrices.
+## Self-Learning Loop
 
-For a full lookup table, open `references/common-plot-types-catalog.md`.
-For Chinese users, open `references/plot-type-map.zh-CN.md` or `README.zh-CN.md`.
-Before running file-writing plot operations, open `references/pre-run-brief.zh-CN.md` or print `python scripts/scimplstyle_mssp_cli.py run-brief --lang zh`.
+When adding a new reference paper:
 
-## Beginner Mode / Codex 新手引导
+1. Run `scripts/audit_figures.py` on the paper figure folder.
+2. Add a figure-template map under `references/`.
+3. Add runnable demos under `scripts/demos/` using synthetic placeholder data.
+4. Register demo metadata in `references/demo-index.json`.
+5. Run `python scripts/package_check.py .`.
 
-If you are new to this skill, use it in three levels:
-
-| Level | What to ask Codex | What you get |
-|---|---|---|
-| Level 1 | "Audit and classify my figures." | A figure inventory and category map. |
-| Level 2 | "Create a demo like this figure." | A runnable `.py` script and PNG with placeholder data. |
-| Level 3 | "Use my real data to regenerate it." | A project-specific script and final figure. |
-
-Three useful prompts:
-
-```text
-Use $sci-paper-plot-skill. I am a beginner. Please audit my figure folder and classify each image.
-```
-
-```text
-Use $sci-paper-plot-skill. Please create a runnable demo like Fig. 14's one-row three-column response plot.
-```
-
-```text
-Use $sci-paper-plot-skill. Please help this skill learn a new paper: audit figures, add a classification map, and create reusable demos.
-```
-
-More beginner guidance is in `references/codex-beginner-guide.md`.
-
-## Self-Learning Method / Skill 自学习方法
-
-When adding a new reference paper, use this workflow:
-
-1. **Audit / 审计**  
-   Run `scripts/audit_figures.py` on the paper folder. Collect figure names, image sizes, DPI, and Notebook `savefig` sources.
-
-2. **Classify / 分类**  
-   Map each figure to the taxonomy in `SKILL.md`, such as validation, posterior density, candidate-library selection, time-frequency map, schematic, or uncertainty plot.
-
-3. **Create a paper map / 建立逐图映射**  
-   Add a reference file under `references/`, for example `references/<paper-name>-figure-templates.md`. Record figure number, category, manuscript role, source family, template function, and style notes.
-
-4. **Add runnable demos / 添加可运行模板**  
-   Add one or more scripts under `scripts/demos/`. Use synthetic placeholder data. Do not copy private project data into the skill package.
-
-5. **Register / 注册入口**  
-   Add the new paper and demo names to this README and, if needed, add new taxonomy terms to `SKILL.md`.
-
-6. **Validate / 验证**  
-   Run:
-
-   ```bash
-   python scripts/package_check.py .
-   ```
-
-7. **Use outside the skill folder / 在项目目录使用**  
-   Treat the skill as a template library. Put real paper plotting scripts and generated figures in the user's project folder, not inside the installed skill package.
-
-## Repository Layout / 仓库结构
-
-```text
-sci-paper-plot-skill/
-├── SKILL.md
-├── README.md
-├── requirements.txt
-├── assets/examples/
-├── references/
-└── scripts/
-    ├── audit_figures.py
-    ├── package_check.py
-    ├── scimplstyle_mssp.py
-    ├── scimplstyle_mssp_cli.py
-    └── demos/
-```
-
-## Validation / 验证
-
-Before publishing or sharing:
+## Validation
 
 ```bash
 python scripts/package_check.py .

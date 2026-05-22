@@ -37,238 +37,23 @@ Style name: MSSP Compact Dynamics.
 """
 
 
-BEGINNER_GUIDE_BILINGUAL = """# sci-paper-plot-skill beginner guide / 新手向导
-
-Use this guide when you are new to Codex plotting skills or do not know which template to choose.
-
-如果你是小白用户，可以先不要管 Matplotlib 或 Seaborn API，直接按“我现在想做什么”选择下一步。
-
-## 1. Pick Your Current Level / 先选当前阶段
-
-| Level | You say | Best next step | Output |
-|---|---|---|---|
-| Level 1 | I have paper figures, but I do not know their types. / 我有论文图片，但不知道属于哪类图。 | Audit and classify figures first. / 先审计并分类。 | Markdown inventory and recommended categories. / 图片清单和分类建议。 |
-| Level 2 | I know the target figure style, but I need a runnable example. / 我知道想画成什么样，但需要能跑的例子。 | Copy the closest demo into a project folder. / 复制最接近的 demo 到项目目录。 | A `.py` script and placeholder PNG output. / 脚本和占位数据生成图。 |
-| Level 3 | I have real CSV/TXT/NPY data and want the final figure. / 我已有真实数据，想生成最终图。 | Adapt one copied demo to your real data. / 把 demo 替换成真实数据。 | Project-specific script and regenerated figure. / 项目专用脚本和最终图。 |
-
-## 2. Commands To Start / 常用入口
-
-```bash
-python scripts/scimplstyle_mssp_cli.py audit "<paper-figure-folder>" --markdown
-python scripts/scimplstyle_mssp_cli.py list-demos
-python scripts/scimplstyle_mssp_cli.py run-brief --lang zh
-python scripts/scimplstyle_mssp_cli.py copy-demos "<working-folder-outside-the-skill>"
-python scripts/scimplstyle_mssp_cli.py style-guide
-```
-
-## 3. Choose A Template By Goal / 按目标选模板
-
-| User goal | Start from | Why |
-|---|---|---|
-| Time response, validation curve, or method comparison / 时域响应、验证曲线、方法对比 | `demo_validation_compare.py`, `demo_line_plot.py`, `demo_hb_fig14_three_column.py` | Direct SCI-style axes, legends, and panel labels. / 直接给出论文式坐标轴、图例和子图标号。 |
-| Zoomed local difference near a peak or transient / 峰值或瞬态附近局部放大 | `demo_validation_inset_zoom.py` | Keeps full trend and local detail in one figure. / 同时保留整体趋势和局部细节。 |
-| Error distribution or uncertainty / 误差分布、不确定性、后验密度 | `demo_error_boxplot.py`, `demo_kde_uncertainty.py`, `demo_matplotlib_distribution_gallery.py` | Good for repeated trials, posterior density, and uncertainty checks. / 适合重复试验、后验密度和不确定性检查。 |
-| Frequency response or time-frequency result / 频响或时频图 | `demo_frf_compare.py`, `demo_time_frequency_map.py` | Uses engineering labels, colorbars, and compact layout. / 已带工程标签、色条和紧凑排版。 |
-| Common Matplotlib plot types / 常见 Matplotlib 图 | `demo_matplotlib_relation_gallery.py`, `demo_matplotlib_categorical_gallery.py`, `demo_matplotlib_field_gallery.py`, `demo_matplotlib_3d_surface.py` | Best when final manuscript layout needs precise Matplotlib control. / 适合最终论文图，需要精确控制布局。 |
-| Common Seaborn/DataFrame plots / 常见 Seaborn 表格数据图 | `demo_seaborn_common_gallery.py` | Best when data is already a tidy table with group columns. / 适合已有分组列的表格数据。 |
-| Machine-learning result figure / 机器学习结果图 | `demo_ml_classification_curves.py`, `demo_ml_confusion_matrix.py`, `demo_ml_feature_importance.py`, `demo_ml_hyperparameter_heatmap.py` | Covers common ML evaluation plots without starting from scratch. / 覆盖常用模型评价图。 |
-| Hierarchical Bayesian clearance-system paper templates / 层级贝叶斯间隙非线性论文模板 | `demo_hb_clearance_templates.py`, `demo_hb_fig14_three_column.py` | Paper-specific Fig. 1-Fig. 18 style mapping. / 对应该论文 Fig. 1-Fig. 18 的模板映射。 |
-
-## 4. Ask Codex Like This / 可以这样问 Codex
-
-```text
-Use $sci-paper-plot-skill. I am a beginner. Please audit my figure folder and tell me which demo is closest.
-```
-
-```text
-Use $sci-paper-plot-skill. I do not know which plot type to choose. Please recommend one template based on my goal before writing code.
-```
-
-```text
-Use $sci-paper-plot-skill. Please copy the closest demo to my current project folder and run it with placeholder data first.
-```
-
-## 5. Safe Defaults / 安全默认规则
-
-- Do not edit original paper images during the first pass.
-- Do not write generated figures into the installed skill folder.
-- Before running commands that write files, confirm the user goal, data source, output folder, language/font, panel labels, and layout.
-- Start with one figure type before converting a whole paper.
-- Use Matplotlib for final journal layout; use Seaborn for grouped table data and quick faceting.
-"""
-
-
-BEGINNER_GUIDE_ZH = """# sci-paper-plot-skill 新手向导
-
-如果你是小白用户，可以先不要管 Matplotlib 或 Seaborn API，直接按“我现在想做什么”选择下一步。
-
-## 1. 先选当前阶段
-
-| 阶段 | 你的情况 | 下一步 | 输出 |
-|---|---|---|---|
-| Level 1 | 我有论文图片，但不知道属于哪类图。 | 先审计并分类。 | 图片清单和分类建议。 |
-| Level 2 | 我知道想画成什么样，但需要能跑的例子。 | 复制最接近的 demo 到项目目录。 | 脚本和占位数据生成图。 |
-| Level 3 | 我已有真实 CSV/TXT/NPY 数据，想生成最终图。 | 把 demo 替换成真实数据。 | 项目专用脚本和最终图。 |
-
-## 2. 常用入口
-
-```bash
-python scripts/scimplstyle_mssp_cli.py audit "<论文图片文件夹>" --markdown
-python scripts/scimplstyle_mssp_cli.py list-demos
-python scripts/scimplstyle_mssp_cli.py beginner-guide --lang zh
-python scripts/scimplstyle_mssp_cli.py run-brief --lang zh
-python scripts/scimplstyle_mssp_cli.py recommend "误差分布" --lang zh
-python scripts/scimplstyle_mssp_cli.py copy-demos "<skill 外部的工作文件夹>"
-```
-
-## 3. 按目标选模板
-
-| 目标 | 推荐起点 | 适用原因 |
-|---|---|---|
-| 时域响应、验证曲线、方法对比 | `demo_validation_compare.py`, `demo_line_plot.py`, `demo_hb_fig14_three_column.py` | 直接给出论文式坐标轴、图例和子图标号。 |
-| 峰值或瞬态附近局部放大 | `demo_validation_inset_zoom.py` | 同时保留整体趋势和局部细节。 |
-| 误差分布、不确定性、后验密度 | `demo_error_boxplot.py`, `demo_kde_uncertainty.py`, `demo_matplotlib_distribution_gallery.py` | 适合重复试验、后验密度和不确定性检查。 |
-| 频响或时频图 | `demo_frf_compare.py`, `demo_time_frequency_map.py` | 已带工程标签、色条和紧凑排版。 |
-| 常见 Matplotlib 论文图 | `demo_matplotlib_relation_gallery.py`, `demo_matplotlib_categorical_gallery.py`, `demo_matplotlib_field_gallery.py` | 适合最终论文图，需要精确控制布局。 |
-| 常见 Seaborn 表格数据图 | `demo_seaborn_common_gallery.py` | 适合已有分组列的表格数据。 |
-| 机器学习结果图 | `demo_ml_classification_curves.py`, `demo_ml_confusion_matrix.py`, `demo_ml_feature_importance.py` | 覆盖常见模型对比和评价图。 |
-
-## 4. 可以这样问 Codex
-
-```text
-Use $sci-paper-plot-skill. 我是新手，请先审计我的图片文件夹，并告诉我最接近哪个 demo。
-```
-
-```text
-Use $sci-paper-plot-skill. 我不知道该选哪个图，请先根据我的目标推荐模板，不要直接写代码。
-```
-
-## 5. 安全默认规则
-
-- 第一轮不改原始论文图片。
-- 不把生成图写进已安装的 skill 文件夹。
-- 会写文件的命令运行前，先确认目标、数据、输出文件夹、语言字体、子图标号和版面。
-- 先完成一类图，再扩展到整篇论文。
-- 最终论文排版优先 Matplotlib；已有分组表格数据优先 Seaborn。
-"""
-
-
-BEGINNER_GUIDE_EN = """# sci-paper-plot-skill beginner guide
-
-Use this guide when you are new to Codex plotting skills or do not know which template to choose.
-
-## 1. Pick Your Current Level
-
-| Level | You say | Best next step | Output |
-|---|---|---|---|
-| Level 1 | I have paper figures, but I do not know their types. | Audit and classify figures first. | Markdown inventory and recommended categories. |
-| Level 2 | I know the target figure style, but I need a runnable example. | Copy the closest demo into a project folder. | A `.py` script and placeholder PNG output. |
-| Level 3 | I have real CSV/TXT/NPY data and want the final figure. | Adapt one copied demo to your real data. | Project-specific script and regenerated figure. |
-
-## 2. Commands To Start
-
-```bash
-python scripts/scimplstyle_mssp_cli.py audit "<paper-figure-folder>" --markdown
-python scripts/scimplstyle_mssp_cli.py list-demos
-python scripts/scimplstyle_mssp_cli.py beginner-guide --lang en
-python scripts/scimplstyle_mssp_cli.py run-brief --lang en
-python scripts/scimplstyle_mssp_cli.py recommend "time response" --lang en
-python scripts/scimplstyle_mssp_cli.py copy-demos "<working-folder-outside-the-skill>"
-```
-
-## 3. Choose A Template By Goal
-
-| User goal | Start from | Why |
-|---|---|---|
-| Time response, validation curve, or method comparison | `demo_validation_compare.py`, `demo_line_plot.py`, `demo_hb_fig14_three_column.py` | Direct SCI-style axes, legends, and panel labels. |
-| Zoomed local difference near a peak or transient | `demo_validation_inset_zoom.py` | Keeps full trend and local detail in one figure. |
-| Error distribution or uncertainty | `demo_error_boxplot.py`, `demo_kde_uncertainty.py`, `demo_matplotlib_distribution_gallery.py` | Good for repeated trials, posterior density, and uncertainty checks. |
-| Frequency response or time-frequency result | `demo_frf_compare.py`, `demo_time_frequency_map.py` | Uses engineering labels, colorbars, and compact layout. |
-| Common Matplotlib plot types | `demo_matplotlib_relation_gallery.py`, `demo_matplotlib_categorical_gallery.py`, `demo_matplotlib_field_gallery.py` | Best when final manuscript layout needs precise Matplotlib control. |
-| Common Seaborn/DataFrame plots | `demo_seaborn_common_gallery.py` | Best when data is already a tidy table with group columns. |
-| Machine-learning result figure | `demo_ml_classification_curves.py`, `demo_ml_confusion_matrix.py`, `demo_ml_feature_importance.py` | Covers common model-comparison and evaluation figures. |
-"""
-
-
-BEGINNER_GUIDES = {
-    "zh": BEGINNER_GUIDE_ZH,
-    "en": BEGINNER_GUIDE_EN,
-    "bilingual": BEGINNER_GUIDE_BILINGUAL,
+BEGINNER_GUIDE_FILES = {
+    "zh": ["references/codex-beginner-guide.zh-CN.md"],
+    "en": ["references/codex-beginner-guide.en.md"],
+    "bilingual": [
+        "references/codex-beginner-guide.zh-CN.md",
+        "references/codex-beginner-guide.en.md",
+    ],
 }
 
 
-PRE_RUN_BRIEF_ZH = """# sci-paper-plot-skill 运行前提示单
-
-在复制 demo、生成预览图册、运行绘图脚本或替换真实数据之前，先让用户补全这些信息。信息不全时，Codex 应先提问，不要直接写文件。
-
-## 最少需要确认的 6 件事
-
-1. 绘图目标：想画什么图？例如时域响应、误差分布、FRF、热图、一排三列对比。
-2. 数据来源：已有真实数据，还是先用占位数据？如果有数据，请给 CSV/TXT/NPY/Excel 的绝对路径。
-3. 输出位置：生成脚本和图片写到哪个工作文件夹？必须在 skill 安装目录外。
-4. 语言和字体：英文 SCI、中文报告，还是中英混排？中文标题是否需要宋体。
-5. 子图标号：`(a)(b)(c)` 默认上方居中；只有期刊或参考图要求时才改为下方居中。
-6. 版面约束：单栏/双栏、几行几列、是否需要图例、色条、局部放大框。
-
-## 可以直接复制给用户的问题
-
-```text
-在我运行绘图程序前，请先告诉我：
-1. 你要画的图是什么目标？例如误差分布、时域响应、FRF、热图。
-2. 你现在有真实数据吗？如果有，请给数据文件绝对路径；如果没有，我先用占位数据。
-3. 输出脚本和图片放到哪个工作文件夹？我不会写进 skill 安装目录。
-4. 图中文字用英文 SCI、中文报告，还是中英混排？中文标题是否用宋体？
-5. `(a)(b)(c)` 标号默认上方居中；是否有期刊或参考图要求必须放下方居中？如果没有，我按默认处理。
-6. 版面是单图、1x3、2x2、2x3，还是按参考图？
-```
-
-## 运行前判断
-
-- `beginner-guide`、`recommend`、`list-demos`、`style-guide` 是只读入口，可以直接运行。
-- `copy-demos`、`preview-gallery`、`check-demos`、真实绘图脚本会写文件，运行前应先拿到提示单。
-- 如果用户已经给了完整信息，只需简短复述确认，然后再运行。
-- 如果只缺一两项，只问缺失项，不要让用户重新填整张表。
-"""
-
-
-PRE_RUN_BRIEF_EN = """# sci-paper-plot-skill pre-run brief
-
-Before copying demos, generating preview galleries, running plotting scripts, or replacing placeholder data with real data, collect this brief from the user. If key information is missing, Codex should ask first instead of writing files immediately.
-
-## Minimum information to confirm
-
-1. Figure goal: time response, error distribution, FRF, heatmap, one-row three-column comparison, etc.
-2. Data source: real data or placeholder data first. If real data exists, ask for absolute CSV/TXT/NPY/Excel paths.
-3. Output location: where scripts and figures should be written. It must be outside the installed skill folder.
-4. Language and fonts: English SCI, Chinese report, or mixed. Confirm whether Chinese titles should use SimSun.
-5. Panel labels: top-center by default; use bottom-center only when required by the journal template or reference figure.
-6. Layout constraints: single/double column, rows and columns, legend, colorbar, or inset needs.
-
-## Prompt to ask the user
-
-```text
-Before I run the plotting program, please tell me:
-1. What is the figure goal?
-2. Do you have real data? If yes, provide absolute data paths; otherwise I will use placeholder data first.
-3. Which working folder should receive the script and generated figures? I will not write them into the skill install folder.
-4. Should the text use English SCI style, Chinese report style, or mixed language? Should Chinese titles use SimSun?
-5. Panel labels use top-center by default. Does the journal template or reference figure require bottom-center? If not, I will keep the default.
-6. Is the layout single panel, 1x3, 2x2, 2x3, or based on a reference figure?
-```
-
-## Pre-run rule
-
-- `beginner-guide`, `recommend`, `list-demos`, and `style-guide` are read-only and can be run directly.
-- `copy-demos`, `preview-gallery`, `check-demos`, and real plotting scripts write files, so collect the brief first.
-- If the user already provided enough information, summarize it briefly and then run.
-- If only one or two fields are missing, ask only for the missing fields.
-"""
-
-
-PRE_RUN_BRIEFS = {
-    "zh": PRE_RUN_BRIEF_ZH,
-    "en": PRE_RUN_BRIEF_EN,
-    "bilingual": PRE_RUN_BRIEF_ZH + "\n\n---\n\n" + PRE_RUN_BRIEF_EN,
+PRE_RUN_BRIEF_FILES = {
+    "zh": ["references/pre-run-brief.zh-CN.md"],
+    "en": ["references/pre-run-brief.en.md"],
+    "bilingual": [
+        "references/pre-run-brief.zh-CN.md",
+        "references/pre-run-brief.en.md",
+    ],
 }
 
 
@@ -277,6 +62,15 @@ CURATED_SET_NAME = "curated"
 
 def skill_root() -> Path:
     return Path(__file__).resolve().parents[1]
+
+
+def read_reference_text(rel_path: str) -> str:
+    path = skill_root() / rel_path
+    return path.read_text(encoding="utf-8").rstrip()
+
+
+def read_reference_group(rel_paths: list[str]) -> str:
+    return "\n\n---\n\n".join(read_reference_text(rel_path) for rel_path in rel_paths)
 
 
 def command_audit(args: argparse.Namespace) -> None:
@@ -295,11 +89,11 @@ def command_style_guide(args: argparse.Namespace) -> None:
 
 
 def command_beginner_guide(args: argparse.Namespace) -> None:
-    write_or_print(BEGINNER_GUIDES[args.lang], args.output)
+    write_or_print(read_reference_group(BEGINNER_GUIDE_FILES[args.lang]), args.output)
 
 
 def command_run_brief(args: argparse.Namespace) -> None:
-    write_or_print(PRE_RUN_BRIEFS[args.lang], args.output)
+    write_or_print(read_reference_group(PRE_RUN_BRIEF_FILES[args.lang]), args.output)
 
 
 def load_demo_index(root: Path | None = None) -> list[dict[str, object]]:
@@ -574,12 +368,12 @@ def build_parser() -> argparse.ArgumentParser:
     style_guide.set_defaults(func=command_style_guide)
 
     beginner_guide = subparsers.add_parser("beginner-guide", help="Print the beginner template-selection guide")
-    beginner_guide.add_argument("--lang", choices=sorted(BEGINNER_GUIDES), default="zh", help="Guide language")
+    beginner_guide.add_argument("--lang", choices=sorted(BEGINNER_GUIDE_FILES), default="zh", help="Guide language")
     beginner_guide.add_argument("--output", type=Path, help="Optional UTF-8 output path")
     beginner_guide.set_defaults(func=command_beginner_guide)
 
     run_brief = subparsers.add_parser("run-brief", help="Print the pre-run user prompt checklist")
-    run_brief.add_argument("--lang", choices=sorted(PRE_RUN_BRIEFS), default="zh", help="Brief language")
+    run_brief.add_argument("--lang", choices=sorted(PRE_RUN_BRIEF_FILES), default="zh", help="Brief language")
     run_brief.add_argument("--output", type=Path, help="Optional UTF-8 output path")
     run_brief.set_defaults(func=command_run_brief)
 

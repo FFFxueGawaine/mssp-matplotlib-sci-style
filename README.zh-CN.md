@@ -56,6 +56,7 @@ python scripts/scimplstyle_mssp_cli.py audit "<论文图片文件夹>" --markdow
 - 论文场景图：Fig. 14 风格一排三列响应图、FRF 对比、时频图、局部放大验证图、后验/KDE 不确定性图、机器学习评价图。
 
 更完整的中文对照表见 `references/plot-type-map.zh-CN.md`。
+详细新手路线见 `references/codex-beginner-guide.zh-CN.md`。
 论文图片的布局、语言、字体和导出约束见 `references/figure-quality-constraints.zh-CN.md`。
 运行绘图程序前的提问清单见 `references/pre-run-brief.zh-CN.md`。
 
